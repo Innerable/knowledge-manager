@@ -1,0 +1,30 @@
+# Nix build result symlinks
+result
+result-*
+
+# Rust / Cargo
+/target/
+
+# rustfmt backups
+**/*.rs.bk
+
+# MSVC Windows debug info
+*.pdb
+
+# IDE
+.vscode/
+.idea/
+
+# Editor temp files
+*~
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+
+# Added by cargo
+
+/target
