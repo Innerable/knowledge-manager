@@ -13,13 +13,11 @@ fn main() -> ExitCode {
         let _ = Help.process_command(&[]);
         return ExitCode::SUCCESS;
     }
+
     let command_args = if args.len() > 2 { &args[2..] } else { &[] };
     let result = match args.get(1) {
         Some(cmd) if cmd == Help.get_command() => Help.process_command(command_args),
-        _ => {
-            let _ = Help.process_command(&[]);
-            return ExitCode::SUCCESS;
-        }
+        _ => Help.process_command(&[]),
     };
 
     match result {
