@@ -1,21 +1,25 @@
 mod commands;
-use commands::index::Index;
-use commands::init::Init;
-use commands::traits::Command;
 mod consts;
+
+use commands::help::Help;
+use commands::traits::Command;
+
 use std::env;
 use std::process::ExitCode;
 
 fn main() -> ExitCode {
-    //let _ = commands::init::init();
     let args: Vec<String> = env::args().collect();
-    let rest = if args.len() > 2 { &args[2..] } else { &[] };
-
+    if (args.get(1) == Some(&Help.get_command().to_string())) || (args.get(1) == None) {
+        let _ = Help.process_command(&[]);
+        return ExitCode::SUCCESS;
+    }
+    let command_args = if args.len() > 2 { &args[2..] } else { &[] };
     let result = match args.get(1) {
-        Some(cmd) if cmd == Init.get_command() => Init.process_command(rest),
-        Some(cmd) if cmd == Index.get_command() => Index.process_command(rest),
-        Some(_) => return ExitCode::FAILURE, //IN FUTURE call help
-        None => return ExitCode::FAILURE,    //same here
+        Some(cmd) if cmd == Help.get_command() => Help.process_command(command_args),
+        _ => {
+            let _ = Help.process_command(&[]);
+            return ExitCode::SUCCESS;
+        }
     };
 
     match result {

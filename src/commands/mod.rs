@@ -1,3 +1,2 @@
-pub mod index;
-pub mod init;
+pub mod help;
 pub mod traits;
