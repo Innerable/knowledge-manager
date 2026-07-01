@@ -28,3 +28,6 @@ Thumbs.db
 # Added by cargo
 
 /target
+
+#added by hand
+/docs

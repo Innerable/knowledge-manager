@@ -8,7 +8,9 @@ impl Command for Help {
     }
     fn process_command(&self, _args: &[String]) -> Result<(), Box<dyn std::error::Error>> {
         println!("The list of all possible commands: ");
-        println!("help - lists all possible commands");
+        println!("help  - lists all possible commands");
+        println!("index - updates index.md");
+        println!("init  - Create an empty repository?");
         Ok(())
     }
 }
